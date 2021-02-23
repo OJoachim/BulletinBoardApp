@@ -7,16 +7,26 @@ import clsx from 'clsx';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 import styles from './NotFound.module.scss';
+import {Link} from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 
-const Component = ({className, children}) => (
-  <div className={clsx(className, styles.root)}>
-    <h2>NotFound</h2>
-    {children}
-  </div>
+const Component = ({className}) => (
+  <Grid
+    container
+    direction="row"
+    justify="center"
+    alignItems="center"
+  >
+    <div className={clsx(className, styles.root)}>
+      <h2>Page not found :( </h2>
+      <Button variant="contained" color="primary" component={Link} to={'/'}>Go back to Homepage</Button>
+    </div>
+  </Grid>
 );
 
 Component.propTypes = {
-  children: PropTypes.node,
+  //children: PropTypes.node,
   className: PropTypes.string,
 };
 
