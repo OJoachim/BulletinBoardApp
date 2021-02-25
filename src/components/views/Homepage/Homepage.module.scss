@@ -1,4 +1,13 @@
 @import '../../../styles/settings.scss';
 
-// .root {
-// }
+.root {
+  .wrapper {
+    text-align: right;
+    margin: 20px 20px 0 0;
+      .btn {
+        color: #000000;
+        border-radius: 10px;
+        margin: 20px;
+      }  
+  }
+}

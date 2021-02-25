@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+
 import clsx from 'clsx';
+
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
@@ -16,8 +18,6 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 import { connect } from 'react-redux';
 import { getPostById } from '../../../redux/postsRedux.js';
 
@@ -105,6 +105,8 @@ class Component extends React.Component {
   }
 }
 
+
+
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
@@ -123,13 +125,3 @@ export {
   Container as Post,
   Component as PostComponent,
 };
-
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);

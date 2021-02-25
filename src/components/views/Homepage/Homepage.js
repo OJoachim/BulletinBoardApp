@@ -1,14 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import clsx from 'clsx';
-
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-
-import styles from './Homepage.module.scss';
-
 import { Link } from 'react-router-dom';
+
 import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -16,8 +9,12 @@ import Button from '@material-ui/core/Button';
 import ChevronRightRounded from '@material-ui/icons/ChevronRightRounded';
 import Typography from '@material-ui/core/Typography';
 
-import {connect} from 'react-redux';
-import {getAll} from '../../../redux/postsRedux.js';
+import clsx from 'clsx';
+
+import { connect } from 'react-redux';
+import { getAll } from '../../../redux/postsRedux.js';
+
+import styles from './Homepage.module.scss';
 
 class Component extends React.Component {
 

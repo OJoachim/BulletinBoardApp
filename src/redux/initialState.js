@@ -4,12 +4,11 @@ export const initialState = {
       {
         id: '1',
         title: 'Advertise1',
-        advert: 'Content-text-one',
+        text: 'Content-text-one',
         publicationDate: '2021.02.13',
         lastUpdate: '2021.02.16',
         email: 'testone@test.com',
         status: 'published',
-        photo: '',
         price: 10,
         phone: 111111000,
         location: 'Lodz',
@@ -17,12 +16,11 @@ export const initialState = {
       {
         id: '2',
         title: 'Advertise2',
-        advert: 'Content-text-two',
+        text: 'Content-text-two',
         publicationDate: '2021.02.17',
         lastUpdate: '2021.02.17',
         email: 'testtwo@test.com',
         status: 'published',
-        photo: '',
         price: 20,
         phone: 211111000,
         location: 'Lodz',
@@ -32,5 +30,27 @@ export const initialState = {
       active: false,
       error: false,
     },
+  },
+  users: {
+    data: [ 
+      {
+        id: '1',
+        name: 'admin',
+        role: 'admin',
+        active: true,
+      },
+      {
+        id: '2',
+        name: 'logged user1',
+        role: 'logged',
+        active: true,
+      },
+      {
+        id: '3',
+        name: 'not logged user',
+        role: 'not logged',
+        active: false,
+      },
+    ],
   },
 };

@@ -1,50 +1,56 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import clsx from 'clsx';
+import { connect } from 'react-redux';
+import { getAllUsers } from '../../../redux/usersRedux';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-
-import styles from './Header.module.scss';
-
-import {NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import styles from './Header.module.scss';
 
 class Component extends React.Component {
 
   state = {
-    authStatus: 'not logged',
+    userData: { ...this.props.user },
   }
-  handleChange = e => {
-    this.setState({
-      authStatus: e.target.value,
-    });
+  handleChangeRole = e => {
+    const { userData } = this.state;
+    const { value } = e.target;
+    this.setState( {
+      userData: {
+        ...userData,
+        role: value,
+      },
+    } );
   };
 
-  render() {
-
+  render () {
+    const { users } = this.props;
+    const { userData } = this.state;
     return (
       <>
         <div>
-          <Button className={styles.link} component={NavLink} exact to={`/`} activeClassName='active'><AssignmentIcon /></Button>
+          <Button className={ styles.link } component={ NavLink } exact to={ `/` } activeClassName='active'><AssignmentIcon /></Button>
         </div>
-        <select value={this.state.authStatus} onChange={this.handleChange}>
-          <option value="logged">logged</option>
-          <option value="not logged">not logged</option>
-          <option value="admin">admin</option>
-        </select>
-        {this.state.authStatus !== 'not logged'
+        <Select labelId="role" id="role" value={ userData.role } onChange={ this.handleChangeRole } label="user">
+          { users.map( user => {
+            return (
+              <MenuItem key={ user.id } value={ user.role }>{ user.name }</MenuItem>
+            );
+          } ) }
+        </Select>
+        {userData.role !== 'not logged'
           ?
-          <nav className={styles.component}>
-            <Button className={styles.link} component={NavLink} exact to={`/post/myposts`} activeClassName='active'>My Posts</Button>
-            <Button className={styles.link} component={NavLink} exact to={`/post/add`} activeClassName='active'>Add Post</Button>
-            <Button className={styles.link} component={NavLink} exact to={`/`} activeClassName='active'>Log out</Button>
+          <nav className={ styles.component }>
+            <Button className={ styles.link } component={ NavLink } exact to={ `/post/add` } activeClassName='active'>Add Post</Button>
+            <Button className={ styles.link } component={ NavLink } exact to={ `/` } activeClassName='active'>Log out</Button>
           </nav>
           :
-          <nav className={styles.component}>
-            <Button className={styles.link} href='https://google.com' activeClassName='active'>Log in</Button>
+          <nav className={ styles.component }>
+            <Button className={ styles.link } href='https://google.com' activeClassName='active'>Log in</Button>
           </nav>
         }
       </>
@@ -55,20 +61,16 @@ class Component extends React.Component {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  users: PropTypes.array,
+  user: PropTypes.object,
 };
+const mapStateToProps = state => ( {
+  users: getAllUsers( state ),
+} );
 
-// const mapStateToProps = state => ({
-//   someProp: reduxSelector(state),
-// });
-
-// const mapDispatchToProps = dispatch => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-// });
-
-// const Container = connect(mapStateToProps, mapDispatchToProps)(Component);
+const Container = connect( mapStateToProps )( Component );
 
 export {
-  Component as Header,
-  // Container as Header,
+  Container as Header,
   Component as HeaderComponent,
 };
